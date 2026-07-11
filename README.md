@@ -35,6 +35,31 @@ val ok = P256.ecdsaVerify {publicKey = pub, message = msg, signatureDer = der}
 val onCurve = P256.isOnCurve pub
 ```
 
+## Example
+
+`make example` builds and runs [`examples/demo.sml`](examples/demo.sml), which
+exercises `generatePublic`, `ecdh`, `ecdsaVerify`, and `isOnCurve` against the
+published RFC 6979 Appendix A.2.5 test vectors (literal fixed scalars/keys,
+never a fabricated private key; output is byte-identical under MLton and
+Poly/ML):
+
+```
+=== sml-p256 demo (RFC 6979 Appendix A.2.5 vectors) ===
+
+generatePublic(priv) matches published pub = true
+public key (hex)      = 0460fed4ba255a9d31c961eb74c6356d68c049b8923b61fa6ce669622e60f29fb67903fe1008b8bc99a41ae9e95628bc64f2f1b20c2d7e9f5177a3c294d4462299
+
+isOnCurve(G)           = true
+isOnCurve(pub)         = true
+isOnCurve(identity)    = false
+
+ecdh(1, pub).x  = Ux    = true
+ecdh(priv, G).x = Ux    = true
+
+ecdsaVerify(pub, "sample", sig)  = true
+ecdsaVerify(pub, "tample", sig)  = false
+```
+
 ## API
 
 See [`p256.sig`](lib/github.com/sjqtentacles/sml-p256/p256.sig). Conventions

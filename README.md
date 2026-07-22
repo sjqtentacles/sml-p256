@@ -1,5 +1,7 @@
 # sml-p256
 
+[![CI](https://github.com/sjqtentacles/sml-p256/actions/workflows/ci.yml/badge.svg)](https://github.com/sjqtentacles/sml-p256/actions/workflows/ci.yml)
+
 NIST P-256 (secp256r1) ECDH and ECDSA signature verification in pure
 Standard ML. Dual-compiler (MLton + Poly/ML) with byte-identical test
 output; zero runtime dependencies.
